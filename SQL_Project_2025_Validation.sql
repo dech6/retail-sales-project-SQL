@@ -63,7 +63,7 @@ select * from sales_validados;
 
 
 -- 2b) Hacemos los cambios identificados a units_sold---------------------------
-
+-- Cambiamos los valores nulos por el promedio de ese valor agrupado por brand y mes
 MERGE INTO sales_validados t
 USING (
   SELECT MONTH, beverage_brand, ROUND(AVG(units_sold), 2) AS promedio
@@ -121,3 +121,47 @@ JOIN state_table st on s.state_id = st.id
 ORDER BY date_column;
 
 select * from sales_final;
+
+
+
+
+--------------------------------------------------------------------------------
+-- Verify the table content one last time with a table_summary
+WITH p AS (
+  SELECT
+    PERCENTILE_CONT(0.05) WITHIN GROUP (ORDER BY price_per_unit) AS p05,
+    PERCENTILE_CONT(0.95) WITHIN GROUP (ORDER BY price_per_unit) AS p95
+  FROM sales_final
+),
+base AS (
+  SELECT
+    sf.*,
+    CASE WHEN units_sold IS NULL THEN 1 ELSE 0 END AS null_units_sold,
+    CASE WHEN retailer   IS NULL THEN 1 ELSE 0 END AS null_retailer,
+
+    CASE WHEN ROW_NUMBER() OVER (PARTITION BY id ORDER BY id) > 1
+         THEN 1 ELSE 0 END AS is_duplicate,
+
+    CASE WHEN price_per_unit < (SELECT p05 FROM p)
+           OR price_per_unit > (SELECT p95 FROM p)
+         THEN 1 ELSE 0 END AS is_outlier
+  FROM sales_final sf
+)
+SELECT
+  COUNT(*)                           AS total_rows,
+  MIN(date_column)                   AS min_date,
+  MAX(date_column)                   AS max_date,
+  SUM(null_units_sold)               AS null_units_sold,
+  ROUND(100.0 * SUM(null_units_sold) / COUNT(*), 2) AS pct_null_units_sold,
+  SUM(null_retailer)                 AS nulls_retailer,
+  COUNT(DISTINCT beverage_brand)     AS unique_brands,
+  COUNT(DISTINCT state)              AS unique_states,
+  SUM(is_duplicate)                  AS dup_rows,
+  SUM(is_outlier)                    AS outlier_rows
+FROM base;
+  
+
+
+
+
+
