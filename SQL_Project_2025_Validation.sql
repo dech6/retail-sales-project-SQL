@@ -1,8 +1,8 @@
--- Crear una nueva tabla en base a la original
+-- Create a new table based on the original one
 CREATE TABLE sales_validados AS
 SELECT * FROM sales_first WHERE 1=0;
 
--- Agregamos los valores a la tabla
+-- Insert the values into the table
 INSERT INTO sales_validados
 SELECT * FROM sales_first;
 
@@ -10,8 +10,8 @@ SELECT * FROM sales_first;
 --TRUNCATE TABLE sales_validados;
 --SELECT * FROM sales_validados;
 
--- Modificando/Arreglando  los datos (String)-----------------------------------
--- 1. Hacemos los cambios identificados a beverage brand -----------------------
+-- Fixing/Cleaning data (String columns) ---------------------------------------
+-- 1. Apply identified changes to beverage brand  ------------------------------
 UPDATE sales_validados
 SET beverage_brand = TRIM(beverage_brand)
 WHERE beverage_brand LIKE ' %';
@@ -34,7 +34,7 @@ FROM sales_validados
 GROUP BY beverage_brand;
 
 
--- 1b) Hacemos los cambios identificados a region ------------------------------
+-- 1b) Apply identified changes to region --------------------------------------
 UPDATE sales_validados
 SET region = 'Midwest'
 WHERE region = 'Mid-west';
@@ -53,8 +53,8 @@ WHERE region = 'south';
 
 
 
--- Modificando/Arreglando  los datos (Numeric)----------------------------------
--- 2. Hacemos los cambios identificados a price_per _unit-----------------------
+-- Fixing/Cleaning data (Numeric columns)---------------------------------------
+-- 2. Apply identified changes to price_per_unit -------------------------------
 
 UPDATE sales_validados
 SET price_per_unit = ROUND(price_per_unit, 2);
@@ -62,8 +62,8 @@ SET price_per_unit = ROUND(price_per_unit, 2);
 select * from sales_validados;
 
 
--- 2b) Hacemos los cambios identificados a units_sold---------------------------
--- Cambiamos los valores nulos por el promedio de ese valor agrupado por brand y mes
+-- 2b) Apply identified changes to units_sold ----------------------------------
+-- Replace null values with the average, grouped by brand and month
 MERGE INTO sales_validados t
 USING (
   SELECT MONTH, beverage_brand, ROUND(AVG(units_sold), 2) AS promedio
@@ -76,13 +76,13 @@ WHEN MATCHED THEN
   UPDATE SET t.units_sold = prom.promedio
   WHERE t.units_sold IS NULL;
 
--- Verificamos los cambios en los valores nulos
+-- Check the changes in null values
 SELECT *
 FROM sales_validados
 WHERE id in(5007,5871,5132,5057,5925) ;
 
 
--- Hay 1 o 2 productos por state_id
+--There are only 1 or 2 products per state_id
 SELECT MONTH, BEVERAGE_BRAND, STATE_ID, COUNT(*) AS registros
 FROM sales_first
 WHERE UNITS_SOLD IS NOT NULL
@@ -93,8 +93,11 @@ SELECT *
 FROM sales_validados;
 
  
--- Utilizamos unicamente brand y month para rellenar los valores vacios, ya que al agregar la capa por state_id unicamente hay 1 o 2 valores. 
 
+/*
+We use only brand and month to fill missing values,
+because including state_id gives very few rows per group
+*/
 
 
 -- Final Table -----------------------------------------------------------
@@ -160,8 +163,3 @@ SELECT
   SUM(is_outlier)                    AS outlier_rows
 FROM base;
   
-
-
-
-
-
