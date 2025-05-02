@@ -1,5 +1,5 @@
--- Exploracion inicial de los datos --------------------------------------------
--- 1. Observamos los datos
+-- Initial data exploration --------------------------------------------
+-- 1. Visualize the data
 SELECT *
 FROM sales_first;
 
@@ -9,7 +9,7 @@ SELECT COUNT(*) row_number
 FROM sales_first;
 
 
--- 1b) Verificamos la columna de FECHA ----------------------------------------
+-- 1b) Check the DATE column ----------------------------------------
 SELECT MIN(date_column), MAX(date_column)
 FROM sales_first;
 
@@ -24,17 +24,17 @@ from sales_first
 WHERE date_column IS NULL OR TRIM(date_column) = ''
 order by date_column;
 
--- 2. Verificamos las columnas de tipo string primero --------------------------
--- Beverage brand tiene errores
+-- 2. First, validate the string-type columns --------------------------
+-- Beverage brand has errors
 SELECT DISTINCT beverage_brand
 FROM sales_first order by beverage_brand;
 
--- Region tiene errores
+--Region has errors
 SELECT DISTINCT region
 FROM sales_first order by region;
 
 
--- 2a) Verificamos que no tengan valores vacios o nulos ------------------------
+-- 2a) Check for missing or null values ---------------------------------------
 SELECT * 
 FROM sales_first 
 WHERE region IS NULL OR TRIM(region) = '';
@@ -44,19 +44,19 @@ FROM sales_first
 WHERE beverage_brand IS NULL  OR TRIM(beverage_brand)= '';
 
 
--- Verificamos que no hayan filas duplicadas
+-- Check for duplicate rows
 SELECT *
 FROM sales_first
 GROUP BY id, retailer_id, date_column, month, region, state_id,
         beverage_brand, price_per_unit, units_sold
 HAVING COUNT(*) > 1;
 
---Vemos que hay valores con errores de formato mal escrito
---No observamos valores nulos o vacios 
---No observamos filas duplicadas
+--We observe formatting errors in some values
+--No missing or null values found 
+--No duplicate rows found
 
 
--- 2b)Verifiquemos los errores de region ---------------------------------------
+-- 2b)Let's check the region errors ---------------------------------------
 SELECT region, COUNT(region)
 FROM sales_first
 WHERE region in ('northeast','Northeast','North-east',
@@ -64,7 +64,7 @@ WHERE region in ('northeast','Northeast','North-east',
 GROUP BY region;
 
 
--- Verifiquemos los errores de beverage_brand 
+--  Let's check the beverage_brand errors 
 
 SELECT beverage_brand, COUNT(beverage_brand)
 FROM sales_first
@@ -73,14 +73,12 @@ WHERE beverage_brand IN(' Sprite','Sprite','Dasani Water',
 GROUP BY beverage_brand;
 
 
--- Las marcas y regiones con mayor cantidad de registros son los que
--- utilizaremos como formato correcto
-
--- Ademas vemos que no es valor duplicado es un error en el formato.
+-- The brands and regions with the most records will be used as the correct formatting reference
+-- Also, we see that the issue is formatting, not duplicates
 
 
 
--- 3. Verificamos las columnas de tipo numerico --------------------------------
+-- 3. Validate the numeric-type columns ----------------------------------------
 ----------------------- Columna state_id -----------------------------
 SELECT * 
 FROM sales_first 
@@ -233,12 +231,12 @@ FROM sales_validados
 WHERE month = 2
 ORDER BY month;
 
--- State_id esta bien, no tiene valores duplicados ni vacios ni error en el fomato.
--- Retailer_ID, no tiene valores duplicados ni vacios ni error en el fomato.
--- ID, no tiene valores duplicados ni vacios ni error en el fomato.
--- Month, no tiene valores duplicados ni vacios ni error en el fomato.
--- Price per unit necesita ajustar el formato de decimales.
--- Tenemos 4 valores nulos en la columna units_sold (pensar que hacer con eso).
+-- State_id is fine, no duplicates, nulls, or formatting issues
+-- Retailer_ID is fine, no duplicates, nulls, or formatting issues
+-- ID is fine, no duplicates, nulls, or formatting issues
+-- Month is fine, no duplicates, nulls, or formatting issues
+-- Price per unit needs decimal formatting adjustment
+-- We have 4 null values in the units_sold column (consider how to handle them)
 
 
 
