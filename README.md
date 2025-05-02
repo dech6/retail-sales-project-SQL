@@ -8,4 +8,15 @@ Author: Daniel Alfonso Echavez Chardaux
 - Any SQL engine that supports window functions (Oracle, SQL Server, PostgreSQL, etc.).  
 - An SQL client/editor (DBeaver, SQL Developer, SSMS, …).
 
-> Contact: dechavezch1h@hotmail.com • LinkedIn: /danielalfonsoechavez-chardaux
+
+
+🛍️ Retail Sales Data Analysis - SQL Project
+📌 Project Overview
+This project involves analyzing and validating retail sales data using SQL scripts. The analysis includes data quality checks, outlier detection, and summary statistics to better understand the dataset and ensure its integrity.
+
+📂 Files Included
+SQL_Project_2025.sql – Main SQL script to process and analyze the sales data.
+
+SQL_Project_2025_Validation.sql – Script used to validate data quality and detect anomalies.
+
+> Contact: dechavezch1h@hotmail.com • LinkedIn: https://www.linkedin.com/in/danielalfonsoechavez-chardaux-610984244/
