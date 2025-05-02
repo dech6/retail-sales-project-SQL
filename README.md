@@ -1,12 +1,11 @@
 # SQL Data Quality & Exploratory Analysis – Sales Dataset  
-Autor: Daniel Alfonso Echavez Chardaux  
+Author: Daniel Alfonso Echavez Chardaux  
 
-## 1 ⎯ Descripción rápida  
-Flujo 100 % SQL para **explorar, validar y preparar** un nuevo dataset de ventas (marcas × retailers × estados) antes de llevarlo a un dashboard.
+## 1 — Quick description  
+100 % SQL workflow to **explore, validate, and prepare** a new sales dataset (brands × retailers × states) before feeding it into a dashboard.
 
-## 2 ⎯ Requisitos mínimos  
-- Motor SQL que soporte funciones ventana (Oracle, SQL Server, PostgreSQL, etc.).  
-- Editor o cliente SQL (DBeaver, SQL Developer, SSMS, …).  
+## 2 — Minimum requirements  
+- Any SQL engine that supports window functions (Oracle, SQL Server, PostgreSQL, etc.).  
+- An SQL client/editor (DBeaver, SQL Developer, SSMS, …).
 
-
-> Contacto: daniel.echavezch@gmail.com • LinkedIn: /danielalfonsoechavez-chardaux
+> Contact: dechavezch1h@hotmail.com • LinkedIn: /danielalfonsoechavez-chardaux
