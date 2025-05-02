@@ -33,9 +33,5 @@ The SQL scripts follow these main steps:
 2. **Data Quality Checks** – Null values, duplicates, and outlier detection using statistical thresholds.
 3. **Summary Table Generation** – A final report is generated with key indicators of dataset integrity.
 
-## 💬 SQL Comments & Explanation
-
-All comments in the SQL code are written in English for consistency and clarity.  
-If further documentation is needed, consider adding a `CODE_GUIDE.md` or a `/docs` folder to explain SQL logic and assumptions in more detail.
 
 > Contact: dechavezch1h@hotmail.com • LinkedIn: https://www.linkedin.com/in/danielalfonsoechavez-chardaux-610984244/
