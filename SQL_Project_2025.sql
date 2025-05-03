@@ -79,7 +79,7 @@ GROUP BY beverage_brand;
 
 
 -- 3. Validate the numeric-type columns ----------------------------------------
------------------------ Columna state_id -----------------------------
+----------------------- column state_id -----------------------------
 SELECT * 
 FROM sales_first 
 WHERE state_id IS NULL OR TRIM(state_id) = ''
@@ -103,7 +103,7 @@ SELECT
 FROM sales_first;
 
 
------------------------ Columna id -----------------------------
+----------------------- column id -----------------------------
 SELECT * 
 FROM sales_first 
 WHERE id IS NULL OR TRIM(id) = ''
@@ -125,7 +125,7 @@ SELECT
 FROM sales_first;
 
 
------------------------ Columna retailer_id -------------------------
+----------------------- column retailer_id -------------------------
 SELECT * 
 FROM sales_first 
 WHERE retailer_id IS NULL OR TRIM(retailer_id) = ''
@@ -147,7 +147,7 @@ SELECT
 FROM sales_first;
 
 
------------------------ Columna month -----------------------------
+----------------------- column month -----------------------------
 SELECT * 
 FROM sales_first 
 WHERE month IS NULL OR TRIM(month) = ''
@@ -174,7 +174,7 @@ SELECT
 FROM sales_first;
 
 
------------------------ Columna price_per_unit -----------------------------
+----------------------- column price_per_unit -----------------------------
 SELECT * 
 FROM sales_first 
 WHERE price_per_unit IS NULL OR TRIM(price_per_unit) = ''
@@ -196,7 +196,7 @@ SELECT
 FROM sales_first;
 
 
------------------------ Columna units_sold -----------------------------
+----------------------- column units_sold -----------------------------
 SELECT * 
 FROM sales_first 
 WHERE units_sold IS NULL OR TRIM(units_sold) = ''
