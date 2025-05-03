@@ -34,4 +34,4 @@ The SQL scripts follow these main steps:
 3. **Summary Table Generation** – A final report is generated with key indicators of dataset integrity.
 
 
-> Contact: dechavezch1h@hotmail.com • LinkedIn: https://www.linkedin.com/in/danielalfonsoechavez-chardaux-610984244/
+> Contact: dechavezch1@hotmail.com • LinkedIn: https://www.linkedin.com/in/danielalfonsoechavez-chardaux-610984244/
