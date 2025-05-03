@@ -7,8 +7,8 @@ This project involves analyzing and validating retail sales data using SQL scrip
 
 ## 📂 Files Included
 
-- `SQL_Project_2025.sql` – Main SQL script to process and analyze the sales data.
-- `SQL_Project_2025_Validation.sql` – Script used to validate data quality and detect anomalies.
+- `01_exploratory_data_analysis.sql` – Main SQL script to process and analyze the sales data.
+- `02_data_cleaning_and_summary.sql` – Script used to validate data quality and detect anomalies.
 
 ## 🔍 Data Summary (Results Overview)
 

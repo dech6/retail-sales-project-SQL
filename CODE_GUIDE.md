@@ -4,7 +4,7 @@ This guide explains the logic, structure, and transformations made in the SQL sc
 
 ---
 
-## 📁 File: `SQL_Project_2025.sql`
+## 📁 File: `01_exploratory_data_analysis.sql`
 
 ### 1. Initial Data Exploration
 
@@ -37,7 +37,7 @@ We checked for:
 
 ---
 
-## 🛠️ File: `SQL_Project_2025_Validation.sql`
+## 📁 File: `02_data_cleaning_and_summary.sql`
 
 ### 1. Table Setup
 
